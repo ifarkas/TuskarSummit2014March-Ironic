@@ -68,6 +68,108 @@
 				</section>
 
 				<section>
+					<h2>Ironic Components</h2>
+					<p>
+                                            <ul>
+                                                <li><font color="#4180ac">Ironic API:</font> The component which operators and other services may interact with to manage the bare metal servers.</li>
+                                                <li><font color="#4180ac">Ironic Conductor:</font> The component which does the bulk of the work. Functionality is exposed via the API service. The Conductor and API services communicate via RPC.</li>
+                                                <li><font color="#4180ac">Database:</font> A Database for registering resources and storing the state of the Conductor and its drivers.</li>
+                                                <li><font color="#4180ac">Deploy Ramdisk:</font> A Deployment Ramdisk which does the work over the hardware which is not available remotely to the Conductor.</li>
+                                            </ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Ironic Flow</h2>
+					<p>
+                                            <img src="images/IronicFlow.png"/>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Driver Interfaces</h2>
+					<p>
+                                            <ul>
+                                                <li><font color="#4180ac">Core</font></li>
+                                                    <ul>
+                                                        <li>Power ({set, get}_power_state(); ...)</li>
+                                                        <li>Provision (deploy(); tear_down(); prepare(); ...)</li>
+                                                    </ul>
+                                                <li><font color="#4180ac">Standard</font></li>
+                                                    <ul>
+                                                        <li>Console ({start, stop, get}_console(); ...)</li>
+                                                        <li>Rescue (rescue(); unresue(); ...)</li>
+                                                    </ul>
+                                                <li><font color="#4180ac">Vendor</font> (validate(); vendor_passhtru();)</li>
+                                            </ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Example of a Driver</h2>
+                                        <pre>
+                                            <code data-trim contenteditable>
+class PXEAndIPMIToolDriver(base.BaseDriver):
+
+    def __init__(self):
+        self.power = ipmitool.IPMIPower()
+        self.deploy = pxe.PXEDeploy()
+
+        pxe_vendor = pxe.VendorPassthru()
+        ipmi_vendor = ipmitool.VendorPassthru()
+        mapping = {'pass_deploy_info': pxe_vendor,
+                   'set_boot_device': ipmi_vendor}
+        self.vendor = utils.MixinVendorInterface(mapping)
+                                            </code>
+                                        </pre>
+                                        <pre>
+                                            <code data-trim contenteditable>
+class IPMIPower(base.PowerInterface):
+
+    def validate(self, task, node):
+        ...
+
+    def get_power_state(self, task, node):
+        ...
+
+    def set_power_state(self, task, node, pstate):
+        ...
+
+    def reboot(self, task, node):
+        ...
+                                            </code>
+                                        </pre>
+				</section>
+
+				<section>
+					<h2>The Vendor Interface</h2>
+					<p>
+                                            <ul>
+                                                <li>set_boot_device() (is probably going to be promoted)</li>
+                                                <li>update_firmware() ???</li>
+                                                <li>boot_from_network_volume() ???</li>
+                                                <li>???</li>
+                                            </ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>PXE and IPMI Driver Deploy Flow</h2>
+					<p>
+                                            <img src="images/PXEandIPMIFlow.png"/>
+					</p>
+				</section>
+
+				<section>
+					<h2>Fault Tolerance</h2>
+					<h4>(Not complete there yet...)</h2>
+					<p>
+                                            <img src="images/FaultTolerance.png"/>
+					</p>
+				</section>
+
+				<section>
 					<h2>Future</h2>
 					<p>
 					</p>
