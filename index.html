@@ -58,6 +58,50 @@
 				<section>
 					<h2>Overview</h2>
 					<p>
+						<ul>
+							<li>provides an API for managing and provisioning of physical machines</li>
+							<li>replaces the Nova baremetal driver</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Baremetal</h2>
+					<p>
+						<ul>
+							<li>hardware is not virtualized</li>
+							<li>the tenant has full access to the hardware</li>
+							<li>hypervisor API gluing together multiple pluggable drivers</li>
+							<li>pluggable drivers to allow vendor-specific functionality to be added</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Why is baremetal important?</h2>
+					<p>
+						<ul>
+							<li>HPC</li>
+							<li>devices which can't be virtualized</li>
+							<li>database hosting</li>
+							<li>deploying a cloud infrastructure</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>Why ALL other tools (MAAS, Crowbar, Foreman) SUCK?</h2>
+				</section>
+
+				<section>
+					<h2>Nova Baremetal vs Ironic split</h2>
+					<p>
+						<ul>
+							<li>separate database</li>
+							<li>requires a considerable amount of information which is unrelated to virtualized deployment</li>
+							<li>tasks on hardware which do not apply to virtual machines</li>
+							<li>interactions with other projects (eg. Neutron) which do not apply to virtual environments</li>
+						</ul>
 					</p>
 				</section>
 
