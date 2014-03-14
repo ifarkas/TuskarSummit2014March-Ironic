@@ -126,7 +126,7 @@
 				<section>
 					<h2>Ironic Flow</h2>
 					<p>
-                                            <img src="images/IronicFlow.png"/>
+                                            <img height="500px" src="images/IronicFlow.png"/>
 					</p>
 				</section>
 
@@ -152,8 +152,7 @@
 
 				<section>
 					<h2>Example of a Driver</h2>
-                                        <pre>
-                                            <code data-trim contenteditable>
+                                        <pre><code data-trim contenteditable>
 class PXEAndIPMIToolDriver(base.BaseDriver):
 
     def __init__(self):
@@ -165,10 +164,8 @@ class PXEAndIPMIToolDriver(base.BaseDriver):
         mapping = {'pass_deploy_info': pxe_vendor,
                    'set_boot_device': ipmi_vendor}
         self.vendor = utils.MixinVendorInterface(mapping)
-                                            </code>
-                                        </pre>
-                                        <pre>
-                                            <code data-trim contenteditable>
+                                        </code></pre>
+                                        <pre><code data-trim contenteditable>
 class IPMIPower(base.PowerInterface):
 
     def validate(self, task, node):
@@ -182,8 +179,7 @@ class IPMIPower(base.PowerInterface):
 
     def reboot(self, task, node):
         ...
-                                            </code>
-                                        </pre>
+                                        </code></pre>
 				</section>
 
 				<section>
@@ -201,7 +197,7 @@ class IPMIPower(base.PowerInterface):
 				<section>
 					<h2>PXE and IPMI Driver Deploy Flow</h2>
 					<p>
-                                            <img src="images/PXEandIPMIFlow.png"/>
+                                            <img height="500px" src="images/PXEandIPMIFlow.png"/>
 					</p>
 				</section>
 
@@ -209,7 +205,7 @@ class IPMIPower(base.PowerInterface):
 					<h2>Fault Tolerance</h2>
 					<h4>(Not complete there yet...)</h2>
 					<p>
-                                            <img src="images/FaultTolerance.png"/>
+                                            <img height="500px" src="images/FaultTolerance.png"/>
 					</p>
 				</section>
 
